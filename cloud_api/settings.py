@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,17 +24,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*ppb#3h*-u%=1s&px=a)rx6#cf$7k#g004$uiwk$rl09ew0p6r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG_STRING = open('debug.txt', 'r').readline()
+DEBUG = True if DEBUG_STRING == 'True' else False 
+
 
 if DEBUG is False:
     ALLOWED_HOSTS = ['playground-api.com']
-else:
+    
+elif DEBUG is True:
     ALLOWED_HOSTS = [
         'eeb4-2600-1700-291-5010-30f6-1d97-84ae-99ad.ngrok.io',
         '8cba-2600-1700-291-5010-d874-35d0-e88d-b45f.ngrok.io',
         '127.0.0.1',
         'localhost'
     ]
+print(f'\n\tDEBUG:\t{DEBUG}\n\tALLOWED_HOSTS:\t{ALLOWED_HOSTS}\n')
 
 
 # Application definition
