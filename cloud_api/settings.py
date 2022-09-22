@@ -25,12 +25,15 @@ SECRET_KEY = 'django-insecure-*ppb#3h*-u%=1s&px=a)rx6#cf$7k#g004$uiwk$rl09ew0p6r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'eeb4-2600-1700-291-5010-30f6-1d97-84ae-99ad.ngrok.io',
-    '8cba-2600-1700-291-5010-d874-35d0-e88d-b45f.ngrok.io',
-    '127.0.0.1',
-    'localhost'
-]
+if DEBUG is False:
+    ALLOWED_HOSTS = ['playground-api.com']
+else:
+    ALLOWED_HOSTS = [
+        'eeb4-2600-1700-291-5010-30f6-1d97-84ae-99ad.ngrok.io',
+        '8cba-2600-1700-291-5010-d874-35d0-e88d-b45f.ngrok.io',
+        '127.0.0.1',
+        'localhost'
+    ]
 
 
 # Application definition
