@@ -51,34 +51,9 @@ class UpdateUsage(APIView):
 
 # LAUNCH PAPERSPACE INSTANCE
 class CloudAPIView(APIView):
-    """
-    1. Adjust customer to be created dynamically instead of a default Playground user.Done
-    1. Create template 
-    2. Save snapshots (workspaces/labs). Delete subdomain when workspace is
-    3. Make lab setup code more robust and reusable. Done.
-    4. check servers status every minutes and start machine if shutdown. Done.
-    5. Move certs folder and Jupyter_config.py to /home/teams/ folder
-    6. Instal biopython, RDKit, Meeko, OpenBabel python APIs and use them in tutorial
-        apt-get install coreutils
-    7. Reset password after setup.
-    7. Run through QA check list.
-    8. Standup production API endpoint
-    9. Change URLs to match production
-    10. Work on GROMACS tutorial with both Python API and a Bash Script approach
-    11. Make Cloud site live.
-    12. Send Slack message to team and get them to QA the site. 
-    
-    """
 
     def __init__(self):
-        """
-        {
-            "action": "create_server",
-            "email": email,
-            "ip_address": ip_address, if not create_server
-        }
-        actions: create_server, restart_server, shutdown_server
-        """
+
         self.paperspace_token = self.set_token(type = "paperspace") 
         self.paperspace_api_endpoint = "https://api.paperspace.io/machines/createSingleMachinePublic"
         self.start_instances_url = lambda id_: f'https://api.paperspace.io/machines/{id_}/start'
@@ -92,17 +67,17 @@ class CloudAPIView(APIView):
         if DEBUG is False: # production mode
             stripe.api_key = self.set_token(type = 'stripe')
             self.price_id_dict = {
-                "P4000": "price_1Li3EhCOoRHpRTSnQ6F2E8cE", 
-                "A6000": "price_1LiCKwCOoRHpRTSnIDeHyBm1",
-                "A100-80G": "price_1LiCMcCOoRHpRTSnlX3bMCLD"
+                "P4000": "", 
+                "A6000": "",
+                "A100-80G": ""
             }
 
         else: # test mode
             stripe.api_key = self.set_token(type = 'stripe_test')
             self.price_id_dict = {
-                "P4000": "price_1LiMZhCOoRHpRTSnKVKjoam7", 
-                "A6000": "price_1LiMZhCOoRHpRTSnKVKjoam7", 
-                "A100-80G": "price_1LiMZhCOoRHpRTSnKVKjoam7" 
+                "P4000": "", 
+                "A6000": "", 
+                "A100-80G": "" 
             }
     
     
